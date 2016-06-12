@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "webpack": "~1.13.1"
+    "webpack": "~1.13.1",
+    "html-webpack-plugin": "~2.20.0"
   }
 }
