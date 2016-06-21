@@ -11,6 +11,7 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "webpack": "~1.13.1",
-    "html-webpack-plugin": "~2.20.0"
+    "html-webpack-plugin": "~2.20.0",
+    "webpack-merge": "~0.14.0"
   }
 }
