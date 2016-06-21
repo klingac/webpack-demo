@@ -11,15 +11,15 @@ module.exports = {
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
     entry: {
-	app: PATHS.app
+	   app: PATHS.app
     },
     output: {
-	path: PATHS.build,
-	filename: '[name].js'
+    	path: PATHS.build,
+    	filename: '[name].js'
     },
     plugins: [
-	new HtmlWebpackPlugin({
-	    title: 'Webpack demo'
-	})
+    	new HtmlWebpackPlugin({
+    	    title: 'Webpack demo'
+    	})
     ]
 };
