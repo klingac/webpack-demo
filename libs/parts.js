@@ -3,12 +3,12 @@ const webpack = require('webpack');
 exports.devServer = function(options) {
   return {
     // in case of problem in Win, Ubuntu or Vagrant
-    //watchOptions: {
+    watchOptions: {
       // Delay the rebuild after the first change
-      //aggregateTimeout: 300,
+      aggregateTimeout: 300,
       // Poll using interval (in ms, accepts boolean too)
-      //poll: 1000
-    //},
+      poll: 1000
+    },
     devServer: {
       // Enable history API fallback so HTML5 History API based
       // routing works. This is a good default that will come
@@ -40,5 +40,19 @@ exports.devServer = function(options) {
         multiStep: true
       })
     ]
+  };
+}
+
+exports.setupCSS = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          include: paths
+        }
+      ]
+    }
   };
 }
