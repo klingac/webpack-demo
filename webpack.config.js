@@ -15,8 +15,8 @@ const common = {
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
     entry: {
-		app: PATHS.app,
-		vendor: ['react']
+		app: PATHS.app
+		//,vendor: ['react']
 	},
     output: {
     	path: PATHS.build,
@@ -43,6 +43,12 @@ switch(process.env.npm_lifecycle_event) {
 			'process.env.NODE_ENV',
 			'production'
 		),
+
+		parts.extractBundle({
+			name: 'vendor',
+			entries: ['react']
+		}),
+		
 		parts.minify(),
 		parts.setupCSS(PATHS.app)
 	);
