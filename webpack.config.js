@@ -38,6 +38,13 @@ switch(process.env.npm_lifecycle_event) {
 		common,
 		{
 			devtool: 'source-map'
+			,output: {
+				path: PATHS.build,
+				filename: '[name].[chunkhash].js',
+				// This is used for require.ensure. The setup
+				// will work without but this is useful to set.
+				chunkFilename: '[chunkhash].js'
+			}
 		},
 		parts.setFreeVariable(
 			'process.env.NODE_ENV',
@@ -48,7 +55,7 @@ switch(process.env.npm_lifecycle_event) {
 			name: 'vendor',
 			entries: ['react']
 		}),
-		
+
 		parts.minify(),
 		parts.setupCSS(PATHS.app)
 	);
