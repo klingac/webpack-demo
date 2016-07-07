@@ -20,6 +20,6 @@
     "webpack-validator": "^2.2.0"
   },
   "dependencies": {
-    "react": "^15.1.0"
+    "react": "^15.2.0"
   }
 }
