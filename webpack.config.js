@@ -16,9 +16,11 @@ const common = {
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
     entry: {
-        style: PATHS.style,
-		app: PATHS.app
-		//,vendor: ['react']
+		app: PATHS.app,
+        style: [
+            // path.join(__dirname, 'node_modules', 'purecss'),
+            path.join(__dirname, 'app', 'main.css')
+        ],
 	},
     output: {
     	path: PATHS.build,
@@ -60,8 +62,10 @@ switch(process.env.npm_lifecycle_event) {
 		}),
 
 		parts.minify(),
-        parts.extractCSS(PATHS.style)
-	);
+        parts.extractCSS(PATHS.style),
+        parts.purifyCSS([PATHS.app])
+
+    );
         break;
     default:
 
