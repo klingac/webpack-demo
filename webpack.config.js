@@ -37,35 +37,36 @@ var config;
 
 switch(process.env.npm_lifecycle_event) {
     case 'build':
+    case 'stats':
 
-	config = merge(
-		common,
-		{
-			devtool: 'source-map'
-			,output: {
-				path: PATHS.build,
-				filename: '[name].[chunkhash].js',
-				// This is used for require.ensure. The setup
-				// will work without but this is useful to set.
-				chunkFilename: '[chunkhash].js'
-			}
-		},
-		parts.clean(PATHS.build),
-		parts.setFreeVariable(
-			'process.env.NODE_ENV',
-			'production'
-		),
+        config = merge(
+            common,
+            {
+                devtool: 'source-map'
+                ,output: {
+                    path: PATHS.build,
+                    filename: '[name].[chunkhash].js',
+                    // This is used for require.ensure. The setup
+                    // will work without but this is useful to set.
+                    chunkFilename: '[chunkhash].js'
+                }
+            },
+            parts.clean(PATHS.build),
+            parts.setFreeVariable(
+                'process.env.NODE_ENV',
+                'production'
+            ),
 
-		parts.extractBundle({
-			name: 'vendor',
-			entries: ['react']
-		}),
+            parts.extractBundle({
+                name: 'vendor',
+                entries: ['react']
+            }),
 
-		parts.minify(),
-        parts.extractCSS(PATHS.style),
-        parts.purifyCSS([PATHS.app])
+            parts.minify(),
+            parts.extractCSS(PATHS.style),
+            parts.purifyCSS([PATHS.app])
 
-    );
+        );
         break;
     default:
 
@@ -84,4 +85,9 @@ switch(process.env.npm_lifecycle_event) {
 }
 
 module.exports = validate(config);
-module.exports = config;
+// module.exports = config;
+
+// Run validator in quiet mode to avoid output in stats
+module.exports = validate(config, {
+    quiet: true
+});
